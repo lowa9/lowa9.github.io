@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231109010759333.png">
 <meta property="article:published_time" content="2023-11-08T06:38:17.000Z">
-<meta property="article:modified_time" content="2023-11-13T08:36:58.338Z">
+<meta property="article:modified_time" content="2023-11-14T16:10:50.883Z">
 <meta property="article:author" content="sxk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k 字
+          11k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          79 分钟
+          94 分钟
         
       </span>
     
@@ -338,7 +338,29 @@
 
 
 
-<h4 id="P0008"><a href="#P0008" class="headerlink" title="P0008"></a>P0008</h4>
+<h4 id="P0008"><a href="#P0008" class="headerlink" title="P0008"></a>P0008</h4><p>不会写,暂存</p>
+<h4 id="P0009-The-King’s-Ups-and-Downs"><a href="#P0009-The-King’s-Ups-and-Downs" class="headerlink" title="P0009 The King’s Ups and Downs"></a>P0009 <strong>The King’s Ups and Downs</strong></h4><p>题目:</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The king wants <span class="hljs-built_in">to</span> know how many guards he needs so he can have <span class="hljs-keyword">a</span> different up <span class="hljs-keyword">and</span> down order <span class="hljs-keyword">at</span> <span class="hljs-keyword">each</span> changing <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> guard <span class="hljs-keyword">for</span> rest <span class="hljs-keyword">of</span> his reign. To be able <span class="hljs-built_in">to</span> <span class="hljs-built_in">do</span> this, he needs <span class="hljs-built_in">to</span> know <span class="hljs-keyword">for</span> <span class="hljs-keyword">a</span> given <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> guards, n, how many different up <span class="hljs-keyword">and</span> down orders there are:<br><br>For example, <span class="hljs-keyword">if</span> there are <span class="hljs-literal">four</span> guards: <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>,<span class="hljs-number">4</span> can be arrange <span class="hljs-keyword">as</span>:<br><br><span class="hljs-number">1324</span>, <span class="hljs-number">2143</span>, <span class="hljs-number">3142</span>, <span class="hljs-number">2314</span>, <span class="hljs-number">3412</span>, <span class="hljs-number">4231</span>, <span class="hljs-number">4132</span>, <span class="hljs-number">2413</span>, <span class="hljs-number">3241</span>, <span class="hljs-number">1423</span><br><br>For this problem, you will <span class="hljs-built_in">write</span> <span class="hljs-keyword">a</span> program that takes <span class="hljs-keyword">as</span> input <span class="hljs-keyword">a</span> positive <span class="hljs-keyword">integer</span> n, <span class="hljs-keyword">the</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> guards <span class="hljs-keyword">and</span> returns <span class="hljs-keyword">the</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> up <span class="hljs-keyword">and</span> down orders <span class="hljs-keyword">for</span> n guards <span class="hljs-keyword">of</span> differing heights.<br><br>给一个n,求n个高矮不同的人排成一排使得高、矮依次排列的种数。<br></code></pre></td></tr></table></figure>
+
+<p>题目大意就是给定n个数字,各不相同,排列成高低高低高低或者低高低高低高情况有多少种</p>
+<ul>
+<li><p>n个数字不相同,那么肯定可以按照递增排列出来,于是考虑按照递增来增加人数,已经有i-1个人的情况下,第i个人加入进来,因为是最高的,所以插入到队伍里面的时候,前面的序列必然是以高低结尾,后面序列是以低高开始.设插入位置前面有j个人,那么后面就有i-j-1个人.</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">设ans<span class="hljs-selector-attr">[i]</span>为<span class="hljs-selector-tag">i</span>个人按照所需排列的情况数目,dp<span class="hljs-selector-attr">[i]</span><span class="hljs-selector-attr">[0]</span>表示<span class="hljs-selector-tag">i</span>个人已经排列好并且结尾为高低的情况,dp<span class="hljs-selector-attr">[i]</span><span class="hljs-selector-attr">[1]</span>表示<span class="hljs-selector-tag">i</span>个人已经排列好并且开头为低高的情况<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>因为可以插入在任意位置,j可以任意取,于是有组合数C[i-1] [j] 种情况,于是ans[i] &#x3D; dp[j] [0] * dp[i-j-1] [1] * C[i-1] [j]</p>
+</li>
+<li><pre><code class="c">  //这里有一点:
+  C[i][j] = C[i-1][j-1] + C[i-1][j]
+  //思路就是所取的数中含有特定的数或者不含有特定的数
+  <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs inform7"><br>* 把i个士兵排好后无非两种情况。开始为低高。开始为高低。那么排列的逆序也满足条件。也就是说结尾为高低的方法数和开始为低高的方法数相同。而对于人数一定的情况。开始为低高的人数和开始为高低的人数相等。<br><br>	* ```<br>		于是 dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[0]</span>=dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[1]</span>=ans<span class="hljs-comment">[i]</span>/2<br></code></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ZCY19990813/article/details/88852983?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-88852983-blog-120627982.235%5Ev38%5Epc_relevant_sort_base3&spm=1001.2101.3001.4242.2&utm_relevant_index=4">题解</a></p>
+<p>代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> &lt;bits/s</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br>ll dp[<span class="hljs-number">22</span>][<span class="hljs-number">2</span>]=&#123;<span class="hljs-number">0</span>&#125;,c[<span class="hljs-number">22</span>][<span class="hljs-number">22</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ll t,i,j;<br>    c[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>    c[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">20</span>;i++)<br>    &#123;<br>        c[i][<span class="hljs-number">0</span>]=c[i][i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;i;j++)<br>            c[i][j]=c[i<span class="hljs-number">-1</span>][j]+c[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];<br>    &#125;<br>    dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]=dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]=dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">20</span>;i++)<br>    &#123;<br>        t=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;i;j++)<br>            t+=dp[j][<span class="hljs-number">0</span>]*dp[i-j<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]*c[i<span class="hljs-number">-1</span>][j];<br>        dp[i][<span class="hljs-number">0</span>]=dp[i][<span class="hljs-number">1</span>]=t/<span class="hljs-number">2</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ll T,i,j,e,n,t;<br>    <span class="hljs-built_in">f</span>();<br>    cin&gt;&gt;T;<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        cin&gt;&gt;e&gt;&gt;n;<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)<br>            cout&lt;&lt;e&lt;&lt;<span class="hljs-string">&quot; 1&quot;</span>&lt;&lt;endl;<br>        <span class="hljs-keyword">else</span><br>            cout&lt;&lt;e&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;dp[n][<span class="hljs-number">0</span>]*<span class="hljs-number">2</span>&lt;&lt;endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
