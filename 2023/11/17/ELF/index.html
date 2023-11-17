@@ -16,22 +16,24 @@
   <meta name="author" content="sxk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="vim使用记录1.基础模式 normal模式:idle状态 insert模式: i   光标前 a       光标后   replace模式:R 选取模式 visual:v visual-line:shift-v visual-block:CTRL-v   command-line::  2.指令拾遗 多个窗口查看一片或者多片buffer:  :sp:创建另一个窗口查看当前的文件 tabnew:">
+    <meta name="description" content="ELF 文件构成 General IntroductionAn ELF header resides at the beginning and holds a “road map’’ describing the file’s  organization. Sections hold the bulk of object file information for the linking view:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vim使用技巧">
-<meta property="og:url" content="http://lowa9.github.io/2023/11/09/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:title" content="ELF">
+<meta property="og:url" content="http://lowa9.github.io/2023/11/17/ELF/index.html">
 <meta property="og:site_name" content="lowa9">
-<meta property="og:description" content="vim使用记录1.基础模式 normal模式:idle状态 insert模式: i   光标前 a       光标后   replace模式:R 选取模式 visual:v visual-line:shift-v visual-block:CTRL-v   command-line::  2.指令拾遗 多个窗口查看一片或者多片buffer:  :sp:创建另一个窗口查看当前的文件 tabnew:">
+<meta property="og:description" content="ELF 文件构成 General IntroductionAn ELF header resides at the beginning and holds a “road map’’ describing the file’s  organization. Sections hold the bulk of object file information for the linking view:">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-08T17:50:47.000Z">
-<meta property="article:modified_time" content="2023-11-08T17:53:24.020Z">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150540600.png">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150725395.png">
+<meta property="article:published_time" content="2023-11-17T06:52:56.000Z">
+<meta property="article:modified_time" content="2023-11-17T07:11:13.130Z">
 <meta property="article:author" content="sxk">
-<meta property="article:tag" content="The missing semester">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150540600.png">
   
   
   
-  <title>vim使用技巧 - lowa9</title>
+  <title>ELF - lowa9</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vim使用技巧"></span>
+            <span id="subtitle" data-typed-text="ELF"></span>
           
         </div>
 
@@ -225,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-09 01:50" pubdate>
-          2023年11月9日 凌晨
+        <time datetime="2023-11-17 14:52" pubdate>
+          2023年11月17日 下午
         </time>
       </span>
     
@@ -237,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.6k 字
         
       </span>
     
@@ -248,7 +250,7 @@
         
         
         
-          12 分钟
+          14 分钟
         
       </span>
     
@@ -294,98 +296,39 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vim使用技巧</h1>
+            <h1 style="display: none">ELF</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="vim使用记录"><a href="#vim使用记录" class="headerlink" title="vim使用记录"></a>vim使用记录</h1><h2 id="1-基础模式"><a href="#1-基础模式" class="headerlink" title="1.基础模式"></a>1.基础模式</h2><ul>
-<li>normal模式:idle状态</li>
-<li>insert模式:<ul>
-<li><strong>i</strong>   光标前</li>
-<li><strong>a</strong>       光标后</li>
-</ul>
-</li>
-<li>replace模式:R</li>
-<li>选取模式<ul>
-<li>visual:<strong>v</strong></li>
-<li>visual-line:<strong>shift-v</strong></li>
-<li>visual-block:<strong>CTRL-v</strong></li>
-</ul>
-</li>
-<li>command-line:<strong>:</strong></li>
-</ul>
-<h2 id="2-指令拾遗"><a href="#2-指令拾遗" class="headerlink" title="2.指令拾遗"></a>2.指令拾遗</h2><ul>
-<li><p>多个窗口查看一片或者多片buffer:</p>
+                <h1 id="ELF-文件构成"><a href="#ELF-文件构成" class="headerlink" title="ELF 文件构成"></a>ELF 文件构成</h1><p><img src="/2023/11/17/ELF/image-20231117150540600.png" srcset="/img/loading.gif" lazyload alt="image-20231117150540600"></p>
+<h3 id="General-Introduction"><a href="#General-Introduction" class="headerlink" title="General Introduction"></a>General Introduction</h3><p>An <em>ELF header</em> resides at the beginning and holds a “road map’’ describing the file’s </p>
+<p>organization. <em>Sections</em> hold the bulk of object file information for the linking view: instructions, </p>
+<p>data, symbol table, relocation information, and so on. Descriptions of special sections appear </p>
+<p>later in this section. Chapter 2 also describes <em>segments</em> and the program execution view of the </p>
+<p>file.</p>
+<p>A <em>program header table</em>, if present, tells the system how to create a process image. Files used </p>
+<p>to build a process image (execute a program) must have a program header table; relocatable </p>
+<p>files do not need one. A <em>section header table</em> contains information describing the file’s sections. </p>
+<p>Every section has an entry in the table; each entry gives information such as the section name, </p>
+<p>the section size, and so on. Files used during linking must have a section header table; other </p>
+<p>object files may or may not have one. </p>
 <ul>
-<li><strong>:sp</strong>:创建另一个窗口查看当前的文件</li>
-<li><strong>tabnew</strong>:</li>
-<li><strong>gt:shift between those tabs</strong></li>
-</ul>
+<li><p>data representation:</p>
+<p>  <img src="/2023/11/17/ELF/image-20231117150725395.png" srcset="/img/loading.gif" lazyload alt="image-20231117150725395"></p>
 </li>
-<li><p>normal模式查找某个word:</p>
-<ul>
-<li><strong>&#x2F;main</strong> means find the ‘main’,enter to get there,and ‘n’ for the next ‘main’</li>
+<li></li>
 </ul>
-</li>
-<li><p>normal模式下移动指令</p>
-<ul>
-<li>hjkl左下上右</li>
-<li>w一个词一个词向后,b一个词一个词向前,e跳到光标所在词词尾</li>
-<li><strong>0</strong>移动到句首,**$**移动到句尾,<strong>^</strong>移动到本行行首第一个非空白字符</li>
-<li>ctrl+u &#x3D;&#x3D; pgup ,ctrl+d &#x3D;&#x3D; pgdn</li>
-<li>‘H’光标移动到屏幕最顶端,’M’屏幕中间,’L’屏幕底端</li>
-<li>gg文件开头,G文件末尾</li>
-<li>line_number:<strong>:{number}<CR></CR></strong> or  <strong>{number}G</strong></li>
-<li>find:fo查找本行光标后第一个o,Fo查找本行光标前第一个o</li>
-<li>To:tr前往本行光标后第一个r前,Tr前往本行光标前第一个r后</li>
-</ul>
-</li>
-<li><p>normal模式下编辑指令</p>
-<ul>
-<li>o:open a new line and get into insert mode</li>
-<li>d:delete:<ul>
-<li><strong>dw</strong>:delete a word</li>
-<li><strong>de</strong>:delete til the end of this word.<strong>db</strong>:delete back to the begining of this word</li>
-<li><strong>ce</strong>:delete the word and get into the insert mode</li>
-<li><strong>dd</strong>:delete the whole line</li>
-<li><strong>cc</strong>:delete the whole line and insert</li>
-</ul>
-</li>
-<li>x:just <strong>delete</strong> the char that you are working on</li>
-<li>r:take another argument and replace the char you’re working on</li>
-<li>u:undo:equals to ctrl+z</li>
-<li>ctrl+r:reverse the undo</li>
-<li>y,p:yank and paste<ul>
-<li><strong>yw</strong>:yank a word</li>
-<li><strong>yy</strong>:yank the whole line</li>
-<li><strong>yb</strong>:复制光标前单词.<strong>ye</strong>:复制光标后单词</li>
-<li><strong>p</strong>:paste</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>visual模式</p>
-<ul>
-<li>进入visual 模式后,hjkl以及其他的移动指令都会选取从光标开始的所有文本</li>
-<li>进入visual block模式,移动指令可以选取文本块</li>
-<li>visual line模式:选取文本行</li>
-</ul>
-</li>
-<li><p>重复性工作</p>
-<p>使用    ‘.’     <strong>可以在新的光标处重复你 的上一个编辑工作</strong></p>
-</li>
-</ul>
-<h3 id="计数指令执行"><a href="#计数指令执行" class="headerlink" title="计数指令执行"></a>计数指令执行</h3><p>举例:移动四行:normal模式下:4j(下移4行)</p>
-<p>向后移动4个word:4w</p>
-<p>等等</p>
-<h3 id="修饰符a-i"><a href="#修饰符a-i" class="headerlink" title="修饰符a,i"></a>修饰符a,i</h3><p>a for  around(including) and i for inside</p>
-<p>for example:</p>
-<p><strong>di(</strong> means delete things inside the “()”</p>
-<p><strong>ci[</strong> means change things inside the”[]”</p>
-<p><strong>da(</strong> means delete things inside the “()”  including “()”</p>
-<p><strong>ci”</strong> means change things inside the “”</p>
-<p><em>后续待补充</em></p>
+<h3 id="ELF-header"><a href="#ELF-header" class="headerlink" title="ELF header"></a>ELF header</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">uint64_t</span> Elf64_Addr;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">uint64_t</span> Elf64_Off;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EI_NIDENT 16</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> e_ident[EI_NIDENT];  <span class="hljs-comment">// 最开头是16个字节的e_ident, 其中包含用以表示ELF文件的字符，以及其他一些与机器无关的信息。开头的4个字节值固定不变，为0x7f和ELF三个字符。</span><br>    <span class="hljs-type">uint16_t</span>      e_type;  <span class="hljs-comment">// 该文件的类型 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_machine;  <span class="hljs-comment">// 该程序需要的体系架构 2字节</span><br>    <span class="hljs-type">uint32_t</span>      e_version;  <span class="hljs-comment">// 文件的版本 4字节</span><br>    Elf64_Addr   e_entry;  <span class="hljs-comment">// 程序的入口地址 8字节</span><br>    Elf64_Off      e_phoff;  <span class="hljs-comment">// Program header table 在文件中的偏移量 8字节</span><br>    Elf64_Off      e_shoff;  <span class="hljs-comment">// Section header table 在文件中的偏移量 8字节</span><br>    <span class="hljs-type">uint32_t</span>      e_flags;  <span class="hljs-comment">// 对IA32而言，此项为0。 4字节</span><br>    <span class="hljs-type">uint16_t</span>      e_ehsize;  <span class="hljs-comment">// 表示ELF header大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_phentsize;  <span class="hljs-comment">// 表示Program header table中每一个条目的大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_phnum;  <span class="hljs-comment">// 表示Program header table中有多少个条目 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shentsize;  <span class="hljs-comment">// 表示Section header table中的每一个条目的大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shnum;  <span class="hljs-comment">// 表示Section header table中有多少个条目 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shstrndx;  <span class="hljs-comment">// 包含节名称的字符串是第几个节 2字节</span><br>&#125; Elf64_Ehdr;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 
                 
               </div>
@@ -395,13 +338,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="../../../../tags/The-missing-semester/">#The missing semester</a>
-      
-    </div>
-  
 </div>
 
 
@@ -410,8 +346,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vim使用技巧</div>
-      <div>http://lowa9.github.io/2023/11/09/vim使用技巧/</div>
+      <div>ELF</div>
+      <div>http://lowa9.github.io/2023/11/17/ELF/</div>
     </div>
     <div class="license-meta">
       
@@ -423,7 +359,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月9日</div>
+          <div>2023年11月17日</div>
         </div>
       
       
@@ -455,18 +391,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../../17/ELF/" title="ELF">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ELF</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../../08/cargo/" title="cargo">
-                        <span class="hidden-mobile">cargo</span>
+                      <a href="../../09/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" title="vim使用技巧">
+                        <span class="hidden-mobile">vim使用技巧</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
