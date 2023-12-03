@@ -27,8 +27,9 @@
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231109010759333.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203145212822.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203171324481.png">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231204003434196.png">
 <meta property="article:published_time" content="2023-11-08T06:38:17.000Z">
-<meta property="article:modified_time" content="2023-12-03T09:52:33.030Z">
+<meta property="article:modified_time" content="2023-12-03T16:38:57.274Z">
 <meta property="article:author" content="sxk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
@@ -252,7 +253,7 @@
         
         
         
-          165 分钟
+          166 分钟
         
       </span>
     
@@ -436,6 +437,12 @@
 
 <p>最大值具有性质:可以从两个端点的最大值取得</p>
 <p><img src="/2023/11/08/algorithm/image-20231203171324481.png" srcset="/img/loading.gif" lazyload alt="image-20231203171324481"></p>
+<h5 id="四边形不等式优化DP-决策单调性"><a href="#四边形不等式优化DP-决策单调性" class="headerlink" title="四边形不等式优化DP;决策单调性"></a>四边形不等式优化DP;决策单调性</h5><p>这题的求最小合并值min可以使用四边形不等式优化</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">转移方程:<br>f<span class="hljs-comment">[i,j]</span> = min(f<span class="hljs-comment">[i,k]</span>,f<span class="hljs-comment">[k+1,j]</span>) + w<span class="hljs-comment">[i,j]</span>;i&lt;=k&lt;=j-1<br>其中,f<span class="hljs-comment">[i,i]</span> = w<span class="hljs-comment">[i,i]</span> = 0<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pm4y1t7ij/?spm_id_from=333.788.recommend_more_video.1&vd_source=3f137d88bc692ff15cffaebe2e7998fc">视频</a></p>
+<p><img src="/2023/11/08/algorithm/image-20231204003434196.png" srcset="/img/loading.gif" lazyload alt="image-20231204003434196"></p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/opt/quadrangle/">oi wiki</a></p>
 
                 
               </div>
