@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203171324481.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231204003434196.png">
 <meta property="article:published_time" content="2023-11-08T06:38:17.000Z">
-<meta property="article:modified_time" content="2023-12-03T16:38:57.274Z">
+<meta property="article:modified_time" content="2023-12-05T01:53:50.276Z">
 <meta property="article:author" content="sxk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          166 分钟
+          176 分钟
         
       </span>
     
@@ -405,6 +405,22 @@
 
 <p>快读:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;	<span class="hljs-type">char</span> x=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(x&lt;<span class="hljs-number">48</span>||x&gt;<span class="hljs-number">57</span>) x=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-type">long</span> <span class="hljs-type">long</span> ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x&gt;=<span class="hljs-number">48</span>&amp;&amp;x&lt;=<span class="hljs-number">57</span>)<br>	&#123;	ans=(ans&lt;&lt;<span class="hljs-number">1</span>)+(ans&lt;&lt;<span class="hljs-number">3</span>)+(x^<span class="hljs-number">48</span>);<br>		x=<span class="hljs-built_in">getchar</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="P0020-多重背包问题"><a href="#P0020-多重背包问题" class="headerlink" title="P0020 多重背包问题"></a>P0020 多重背包问题</h4><p>题目描述</p>
+<p>终于，破解了千年的难题。小 FF 找到了王室的宝物室，里面堆满了无数价值连城的宝物。</p>
+<p>这下小 FF 可发财了，嘎嘎。但是这里的宝物实在是太多了，小 FF 的采集车似乎装不下那么多宝物。看来小 FF 只能含泪舍弃其中的一部分宝物了。</p>
+<p>小 FF 对洞穴里的宝物进行了整理，他发现每样宝物都有一件或者多件。他粗略估算了下每样宝物的价值，之后开始了宝物筛选工作：小 FF 有一个最大载重为 �<em>W</em> 的采集车，洞穴里总共有 �<em>n</em> 种宝物，每种宝物的价值为 ��<em>v**i</em>，重量为 ��<em>w**i</em>，每种宝物有 ��<em>m**i</em> 件。小 FF 希望在采集车不超载的前提下，选择一些宝物装进采集车，使得它们的价值和最大。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1776">原题</a></p>
+<p>这就是个<a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/knapsack/#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85">多重背包问题</a>,优化使用二进制分组优化成0-1背包问题</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> v[<span class="hljs-number">1000010</span>],w[<span class="hljs-number">1000010</span>],dp[<span class="hljs-number">1000010</span>];<br><span class="hljs-type">int</span> cnt;<span class="hljs-comment">//这是记录新产生的物品的数目</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,W;<br>    cin&gt;&gt;n&gt;&gt;W;<br>    <span class="hljs-type">int</span> vi, wi, mi;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        cin&gt;&gt;vi&gt;&gt;wi&gt;&gt;mi;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;k&lt;=mi;k&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>            v[++cnt] = vi * k;<br>            w[cnt] = wi * k;<br>            mi -= k;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(mi&gt;<span class="hljs-number">0</span>)&#123;<br>            v[++cnt] = vi * mi;<br>            w[cnt] = wi * mi;<br>        &#125;<span class="hljs-comment">//不是2的整数次幂,剩余的部分也能组成一个大物件</span><br>    &#125;<br><br><br>    <span class="hljs-comment">//转化为0-1背包A</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=cnt;i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=W;j&gt;=w[i];j--)&#123;<br>            dp[j] = <span class="hljs-built_in">max</span>(dp[j],dp[j - w[i]]+v[i]);<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;dp[W]&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>0-1背包的核心代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = W; l &gt;= w[i]; l--) f[l] = <span class="hljs-built_in">max</span>(f[l], f[l - w[i]] + v[i]);<br></code></pre></td></tr></table></figure>
+
+<p>完全背包问题核心代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">0</span>; l &lt;= W - w[i]; l++)<br>    f[l + w[i]] = <span class="hljs-built_in">max</span>(f[l] + v[i], f[l + w[i]]);<br><span class="hljs-comment">// 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),</span><br><span class="hljs-comment">// f[i][l + w[i]]); 简化而来</span><br></code></pre></td></tr></table></figure>
 
 
 
