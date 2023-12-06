@@ -28,8 +28,9 @@
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203145212822.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203171324481.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231204003434196.png">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231206230602193.png">
 <meta property="article:published_time" content="2023-11-08T06:38:17.000Z">
-<meta property="article:modified_time" content="2023-12-05T01:53:50.276Z">
+<meta property="article:modified_time" content="2023-12-06T15:24:01.908Z">
 <meta property="article:author" content="sxk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
@@ -242,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21k 字
+          23k 字
         
       </span>
     
@@ -253,7 +254,7 @@
         
         
         
-          176 分钟
+          190 分钟
         
       </span>
     
@@ -456,9 +457,34 @@
 <h5 id="四边形不等式优化DP-决策单调性"><a href="#四边形不等式优化DP-决策单调性" class="headerlink" title="四边形不等式优化DP;决策单调性"></a>四边形不等式优化DP;决策单调性</h5><p>这题的求最小合并值min可以使用四边形不等式优化</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">转移方程:<br>f<span class="hljs-comment">[i,j]</span> = min(f<span class="hljs-comment">[i,k]</span>,f<span class="hljs-comment">[k+1,j]</span>) + w<span class="hljs-comment">[i,j]</span>;i&lt;=k&lt;=j-1<br>其中,f<span class="hljs-comment">[i,i]</span> = w<span class="hljs-comment">[i,i]</span> = 0<br></code></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pm4y1t7ij/?spm_id_from=333.788.recommend_more_video.1&vd_source=3f137d88bc692ff15cffaebe2e7998fc">视频</a></p>
+
+
+<p>代码见<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pm4y1t7ij/?spm_id_from=333.788.recommend_more_video.1&vd_source=3f137d88bc692ff15cffaebe2e7998fc">视频</a></p>
 <p><img src="/2023/11/08/algorithm/image-20231204003434196.png" srcset="/img/loading.gif" lazyload alt="image-20231204003434196"></p>
 <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/opt/quadrangle/">oi wiki</a></p>
+<h4 id="P0026-偷天换日-树形DP"><a href="#P0026-偷天换日-树形DP" class="headerlink" title="P0026 偷天换日(树形DP)"></a>P0026 偷天换日(树形DP)</h4><p>神偷对艺术馆内的名画垂涎欲滴准备大捞一把。艺术馆由若干个展览厅和若干条走廊组成。每一条走廊的尽头不是通向一个展览厅，就是分为两个走廊。每个展览厅内都有若干幅画，每副画都有一个价值。经过走廊和偷画都是要耗费时间的。警察会在第n秒到达进口，在不被逮捕的情况下你最多能得到的价值。</p>
+<p>第一行一个整数 n</p>
+<p>第二行若干组整数，对于每组整数（t,x），t表示进入这个展览厅或经过走廊要耗费t秒的时间，若x&gt;0表示走廊通向的展览厅内有x幅画,接下来x对整数(w,c)表示偷一幅价值为w的画需要c秒的时间。若x&#x3D;0表示走廊一分为二。</p>
+<p>输入是按深度优先给出的。</p>
+<p><img src="/2023/11/08/algorithm/image-20231206230602193.png" srcset="/img/loading.gif" lazyload alt="image-20231206230602193"></p>
+<p>直接就是不会写…先小看一手<a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/tree/">树形DP</a></p>
+<p>上代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls p&lt;&lt;1</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs p&lt;&lt;1|1</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;<span class="hljs-type">bool</span> f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">0</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;k=(k&lt;&lt;<span class="hljs-number">1</span>)+(k&lt;&lt;<span class="hljs-number">3</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;	<br>	<span class="hljs-keyword">return</span> f?k:-k;<br>&#125;<br><span class="hljs-type">int</span> m,f[<span class="hljs-number">1000</span>][<span class="hljs-number">600</span>];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;<span class="hljs-comment">//读入部分</span><br>	<span class="hljs-type">int</span> t=<span class="hljs-built_in">read</span>(),n=<span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">if</span>(!n)&#123;<br>		<span class="hljs-built_in">dfs</span>(ls);<br>		<span class="hljs-built_in">dfs</span>(rs);<span class="hljs-comment">//①</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v=m-t*<span class="hljs-number">2</span>;v&gt;<span class="hljs-number">0</span>;v--)<br>		    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=v;j&gt;=<span class="hljs-number">0</span>;j--)<br>		    	f[p][v+t*<span class="hljs-number">2</span>]=<span class="hljs-built_in">max</span>(f[p][v+t*<span class="hljs-number">2</span>],f[ls][j]+f[rs][v-j]);<span class="hljs-comment">//②千万不要忘了给走廊时间乘二</span><br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>	    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>	    &#123;<br>	    	<span class="hljs-type">int</span> w=<span class="hljs-built_in">read</span>(),c=<span class="hljs-built_in">read</span>();<br>	    	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v=m;v&gt;=c+t*<span class="hljs-number">2</span>;v--)<br>	    	    f[p][v]=<span class="hljs-built_in">max</span>(f[p][v],f[p][v-c]+w);<span class="hljs-comment">//③</span><br>		&#125;<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	m=<span class="hljs-built_in">read</span>()<span class="hljs-number">-1</span>; <span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,f[<span class="hljs-number">1</span>][m]);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>由于数据是深度优先给出,也就是说可以使用递归来读取,并且构造一棵树,在递归的时候直接进行DP</p>
+<p><strong>dp[i] [j] 代表了,第i个根节点,逃跑时间为j时,能够偷到的最大价值</strong></p>
+<ul>
+<li>读取部分,如果读到0的话,说明遇到分叉走廊,就先对左子树再调用dfs(),再对右子树调用dfs()</li>
+<li>如果不是0,就处理0-1背包问题,对接下来的物品进行筛选.<ul>
+<li>注意,这里由于要能给逃出出口足够时间,需要v&gt;&#x3D;c+t*2,也就是一个走廊的来回时间</li>
+<li>转移方程这里,就是正常的0-1背包,注意是f[p] [v-c]而不是f[p] [v-c-t*2] ; tx2应该在外面,算作限制条件,里面的n个物品所需的时间单独算</li>
+</ul>
+</li>
+<li>左右子树调用完之后处理本身根节点的情况,最大的剩余时间是m - t*2 ,v最大从这个值开始递减,但是要大于0,这样才满足能逃走,这样之后就变成了时间v怎么分给这两边最好的问题了.</li>
+</ul>
+<p>希望一段时间后再来看还能看懂,懂得更多</p>
+<h5 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;<span class="hljs-type">bool</span> f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">0</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;k=(k&lt;&lt;<span class="hljs-number">1</span>)+(k&lt;&lt;<span class="hljs-number">3</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;	<br>	<span class="hljs-keyword">return</span> f?k:-k;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
