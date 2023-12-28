@@ -29,8 +29,10 @@
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231203171324481.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231204003434196.png">
 <meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231206230602193.png">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231228215738457.png">
+<meta property="og:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231228215810220.png">
 <meta property="article:published_time" content="2023-11-08T06:38:17.000Z">
-<meta property="article:modified_time" content="2023-12-06T15:24:01.908Z">
+<meta property="article:modified_time" content="2023-12-28T15:14:49.747Z">
 <meta property="article:author" content="sxk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lowa9.github.io/2023/11/08/algorithm/image-20231108174122624.png">
@@ -243,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          25k 字
         
       </span>
     
@@ -254,7 +256,7 @@
         
         
         
-          190 分钟
+          206 分钟
         
       </span>
     
@@ -305,7 +307,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="DP问题"><a href="#DP问题" class="headerlink" title="DP问题"></a>DP问题</h1><h4 id="P0005折线分割平面问题"><a href="#P0005折线分割平面问题" class="headerlink" title="P0005折线分割平面问题"></a>P0005折线分割平面问题</h4><p>题目:</p>
+                <h3 id="DP问题"><a href="#DP问题" class="headerlink" title="DP问题"></a>DP问题</h3><h4 id="P0005折线分割平面问题"><a href="#P0005折线分割平面问题" class="headerlink" title="P0005折线分割平面问题"></a>P0005折线分割平面问题</h4><p>题目:</p>
 <p><img src="/2023/11/08/algorithm/image-20231108174122624.png" srcset="/img/loading.gif" lazyload alt="image-20231108174122624"></p>
 <p>明确几点:</p>
 <ul>
@@ -475,7 +477,7 @@
 <p><strong>dp[i] [j] 代表了,第i个根节点,逃跑时间为j时,能够偷到的最大价值</strong></p>
 <ul>
 <li>读取部分,如果读到0的话,说明遇到分叉走廊,就先对左子树再调用dfs(),再对右子树调用dfs()</li>
-<li>如果不是0,就处理0-1背包问题,对接下来的物品进行筛选.<ul>
+<li>如果不是0,而是n,那么就处理n个物品的0-1背包问题,对接下来的物品进行筛选.<ul>
 <li>注意,这里由于要能给逃出出口足够时间,需要v&gt;&#x3D;c+t*2,也就是一个走廊的来回时间</li>
 <li>转移方程这里,就是正常的0-1背包,注意是f[p] [v-c]而不是f[p] [v-c-t*2] ; tx2应该在外面,算作限制条件,里面的n个物品所需的时间单独算</li>
 </ul>
@@ -484,6 +486,30 @@
 </ul>
 <p>希望一段时间后再来看还能看懂,懂得更多</p>
 <h5 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;<span class="hljs-type">bool</span> f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">0</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;k=(k&lt;&lt;<span class="hljs-number">1</span>)+(k&lt;&lt;<span class="hljs-number">3</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;	<br>	<span class="hljs-keyword">return</span> f?k:-k;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="P0033-树状数组-模板"><a href="#P0033-树状数组-模板" class="headerlink" title="P0033 树状数组(模板)"></a>P0033 树状数组(模板)</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">洛谷P3374</a></p>
+<p>防止md崩直接转载截图:</p>
+<p><img src="/2023/11/08/algorithm/image-20231228215738457.png" srcset="/img/loading.gif" lazyload alt="image-20231228215738457"></p>
+<p><img src="/2023/11/08/algorithm/image-20231228215810220.png" srcset="/img/loading.gif" lazyload alt="image-20231228215810220"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5e5</span> + <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> tr[N];<br><span class="hljs-type">int</span> n,m;<br><span class="hljs-comment">///树状数组核心操作</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> x &amp; -x;<br>&#125;<br><span class="hljs-comment">///添加</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> c)</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x;i&lt;=n;i+=<span class="hljs-built_in">lowbit</span>(i)) tr[i]+=c;<br>&#125;<br><span class="hljs-comment">///求和 </span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x;i;i-=<span class="hljs-built_in">lowbit</span>(i)) res+=tr[i];<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br><br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>	<span class="hljs-comment">///树状数组初始化</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> x;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;x);<br>		<span class="hljs-built_in">add</span>(i,x);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(m --)&#123;<br>		<span class="hljs-type">int</span> a,b,c;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);<br>		<span class="hljs-keyword">if</span>(a == <span class="hljs-number">1</span>) <span class="hljs-built_in">add</span>(b,c);<br>		<span class="hljs-keyword">if</span>(a == <span class="hljs-number">2</span>)&#123;<br>			<span class="hljs-comment">///求出区间 b～c 的所有数之和</span><br>			<span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-built_in">sum</span>(c) - <span class="hljs-built_in">sum</span>(b - <span class="hljs-number">1</span>);<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="P0034-树状数组-模板二"><a href="#P0034-树状数组-模板二" class="headerlink" title="P0034 树状数组(模板二)"></a>P0034 树状数组(模板二)</h3><p>这题多个差分,差分思想：</p>
+<p>设数组a[]&#x3D;{1,6,8,5,10}，那么差分数组b[]&#x3D;{1,5,2,-3,5}</p>
+<p>也就是说b[i]&#x3D;a[i]-a[i-1];(a[0]&#x3D;0;)，那么a[i]&#x3D;b[1]+….+b[i];(这个很好证的)。</p>
+<p>假如区间[2,4]都加上2的话</p>
+<p>a数组变为a[]&#x3D;{1,8,10,7,10}，b数组变为b&#x3D;{1,7,2,-3,3};</p>
+<p>发现了没有，b数组只有b[2]和b[5]变了，因为区间[2,4]是同时加上2的,所以在区间内b[i]-b[i-1]是不变的.</p>
+<p>所以对区间[x,y]进行修改,只用修改b[x]与b[y+1]:</p>
+<p>b[x]&#x3D;b[x]+k;b[y+1]&#x3D;b[y+1]-k;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,m,l,r,x;<br><span class="hljs-type">long</span> <span class="hljs-type">long</span> c[<span class="hljs-number">500010</span>],k,a;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> x&amp;(-x);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">long</span> <span class="hljs-type">long</span> y)</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(x&lt;=n)&#123;<br>        c[x]+=y;<br>        x+=<span class="hljs-built_in">lowbit</span>(x);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> cnt=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(x)&#123;<br>        cnt+=c[x];<br>        x-=<span class="hljs-built_in">lowbit</span>(x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> cnt; <br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> now=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;a);<span class="hljs-comment">//这里的now相当于上一个a[i-1]</span><br>        <span class="hljs-built_in">change</span>(i,a-now);<br>        now=a;<span class="hljs-comment">//更新</span><br>    &#125;<br>    <span class="hljs-keyword">while</span>(m--)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;x);<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%lld&quot;</span>,&amp;l,&amp;r,&amp;k);<br>            <span class="hljs-built_in">change</span>(l,k);<span class="hljs-comment">//差分</span><br>            <span class="hljs-built_in">change</span>(r+<span class="hljs-number">1</span>,-k);<span class="hljs-comment">//差分</span><br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-type">int</span> s;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;s);<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">solve</span>(s));<span class="hljs-comment">//求和</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
