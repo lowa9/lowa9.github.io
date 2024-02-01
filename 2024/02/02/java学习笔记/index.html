@@ -16,24 +16,22 @@
   <meta name="author" content="sxk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ELF 文件构成 General IntroductionAn ELF header resides at the beginning and holds a “road map’’ describing the file’s  organization. Sections hold the bulk of object file information for the linking view:">
+    <meta name="description" content="关于stack和queue的运用小记：进阶练习 请把带变量的中缀表达式编译为后缀表达式，执行后缀表达式时，传入变量的值并获得计算结果： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELF">
-<meta property="og:url" content="http://lowa9.github.io/2023/11/17/ELF/index.html">
+<meta property="og:title" content="java学习笔记">
+<meta property="og:url" content="http://lowa9.github.io/2024/02/02/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="lowa9">
-<meta property="og:description" content="ELF 文件构成 General IntroductionAn ELF header resides at the beginning and holds a “road map’’ describing the file’s  organization. Sections hold the bulk of object file information for the linking view:">
+<meta property="og:description" content="关于stack和queue的运用小记：进阶练习 请把带变量的中缀表达式编译为后缀表达式，执行后缀表达式时，传入变量的值并获得计算结果： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150540600.png">
-<meta property="og:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150725395.png">
-<meta property="article:published_time" content="2023-11-17T06:52:56.000Z">
-<meta property="article:modified_time" content="2023-11-17T07:11:13.130Z">
+<meta property="article:published_time" content="2024-02-01T17:29:09.000Z">
+<meta property="article:modified_time" content="2024-02-01T17:32:48.668Z">
 <meta property="article:author" content="sxk">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://lowa9.github.io/2023/11/17/ELF/image-20231117150540600.png">
   
   
   
-  <title>ELF - lowa9</title>
+  <title>java学习笔记 - lowa9</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ELF"></span>
+            <span id="subtitle" data-typed-text="java学习笔记"></span>
           
         </div>
 
@@ -227,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-17 14:52" pubdate>
-          2023年11月17日 下午
+        <time datetime="2024-02-02 01:29" pubdate>
+          2024年2月2日 凌晨
         </time>
       </span>
     
@@ -239,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          3.4k 字
         
       </span>
     
@@ -250,7 +248,7 @@
         
         
         
-          14 分钟
+          28 分钟
         
       </span>
     
@@ -296,38 +294,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ELF</h1>
+            <h1 style="display: none">java学习笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="ELF-文件构成"><a href="#ELF-文件构成" class="headerlink" title="ELF 文件构成"></a>ELF 文件构成</h1><p><img src="/2023/11/17/ELF/image-20231117150540600.png" srcset="/img/loading.gif" lazyload alt="image-20231117150540600"></p>
-<h3 id="General-Introduction"><a href="#General-Introduction" class="headerlink" title="General Introduction"></a>General Introduction</h3><p>An <em>ELF header</em> resides at the beginning and holds a “road map’’ describing the file’s </p>
-<p>organization. <em>Sections</em> hold the bulk of object file information for the linking view: instructions, </p>
-<p>data, symbol table, relocation information, and so on. Descriptions of special sections appear </p>
-<p>later in this section. Chapter 2 also describes <em>segments</em> and the program execution view of the </p>
-<p>file.</p>
-<p>A <em>program header table</em>, if present, tells the system how to create a process image. Files used </p>
-<p>to build a process image (execute a program) must have a program header table; relocatable </p>
-<p>files do not need one. A <em>section header table</em> contains information describing the file’s sections. </p>
-<p>Every section has an entry in the table; each entry gives information such as the section name, </p>
-<p>the section size, and so on. Files used during linking must have a section header table; other </p>
-<p>object files may or may not have one. </p>
-<ul>
-<li><p>data representation:</p>
-<p>  <img src="/2023/11/17/ELF/image-20231117150725395.png" srcset="/img/loading.gif" lazyload alt="image-20231117150725395"></p>
-</li>
-<li></li>
-</ul>
-<h3 id="ELF-header"><a href="#ELF-header" class="headerlink" title="ELF header"></a>ELF header</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">uint64_t</span> Elf64_Addr;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">uint64_t</span> Elf64_Off;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EI_NIDENT 16</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> e_ident[EI_NIDENT];  <span class="hljs-comment">// 最开头是16个字节的e_ident, 其中包含用以表示ELF文件的字符，以及其他一些与机器无关的信息。开头的4个字节值固定不变，为0x7f和ELF三个字符。</span><br>    <span class="hljs-type">uint16_t</span>      e_type;  <span class="hljs-comment">// 该文件的类型 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_machine;  <span class="hljs-comment">// 该程序需要的体系架构 2字节</span><br>    <span class="hljs-type">uint32_t</span>      e_version;  <span class="hljs-comment">// 文件的版本 4字节</span><br>    Elf64_Addr   e_entry;  <span class="hljs-comment">// 程序的入口地址 8字节</span><br>    Elf64_Off      e_phoff;  <span class="hljs-comment">// Program header table 在文件中的偏移量 8字节</span><br>    Elf64_Off      e_shoff;  <span class="hljs-comment">// Section header table 在文件中的偏移量 8字节</span><br>    <span class="hljs-type">uint32_t</span>      e_flags;  <span class="hljs-comment">// 对IA32而言，此项为0。 4字节</span><br>    <span class="hljs-type">uint16_t</span>      e_ehsize;  <span class="hljs-comment">// 表示ELF header大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_phentsize;  <span class="hljs-comment">// 表示Program header table中每一个条目的大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_phnum;  <span class="hljs-comment">// 表示Program header table中有多少个条目 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shentsize;  <span class="hljs-comment">// 表示Section header table中的每一个条目的大小 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shnum;  <span class="hljs-comment">// 表示Section header table中有多少个条目 2字节</span><br>    <span class="hljs-type">uint16_t</span>      e_shstrndx;  <span class="hljs-comment">// 包含节名称的字符串是第几个节 2字节</span><br>&#125; Elf64_Ehdr;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+                <h3 id="关于stack和queue的运用小记："><a href="#关于stack和queue的运用小记：" class="headerlink" title="关于stack和queue的运用小记："></a>关于stack和queue的运用小记：</h3><p>进阶练习</p>
+<p>请把带变量的中缀表达式编译为后缀表达式，执行后缀表达式时，传入变量的值并获得计算结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itranswarp.learnjava;<br><br><span class="hljs-keyword">import</span> java.util.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-type">String</span> <span class="hljs-variable">exp</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;x + 2 * (y - 5)&quot;</span>;<br>		<span class="hljs-type">SuffixExpression</span> <span class="hljs-variable">se</span> <span class="hljs-operator">=</span> compile(exp);<br>		Map&lt;String, Integer&gt; env = Map.of(<span class="hljs-string">&quot;x&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;y&quot;</span>, <span class="hljs-number">9</span>);<br>		<span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> se.execute(env);<br>		System.out.println(env);<br>		System.out.println(exp + <span class="hljs-string">&quot; = &quot;</span> + result + <span class="hljs-string">&quot; &quot;</span> + (result == <span class="hljs-number">1</span> + <span class="hljs-number">2</span> * (<span class="hljs-number">9</span> - <span class="hljs-number">5</span>) ? <span class="hljs-string">&quot;correct&quot;</span> : <span class="hljs-string">&quot;wrong&quot;</span>));<br>	&#125;<br><br>	<span class="hljs-keyword">static</span> SuffixExpression <span class="hljs-title function_">compile</span><span class="hljs-params">(String exp)</span> &#123;<br>		<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> trun exp into suffix expression.</span><br>		<span class="hljs-type">SuffixExpression</span> <span class="hljs-variable">suffe</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuffixExpression</span>();<br>		<span class="hljs-type">char</span>[] expArray = exp.toCharArray();<br>		<span class="hljs-keyword">for</span>(Character c : expArray)&#123;<br>			<span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>				<span class="hljs-keyword">continue</span>;<br>			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(isChar(c))&#123; <span class="hljs-comment">//is a number or a char</span><br>				suffe.queue.add(c);<br>			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;(&#x27;</span>)&#123; <span class="hljs-comment">// is a &#x27;(&#x27;</span><br>				suffe.stack.push(c);<br>			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;)&#x27;</span>)&#123; <span class="hljs-comment">// is a &#x27;)&#x27;</span><br>				<span class="hljs-keyword">while</span>(suffe.stack.peek() != <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>					<span class="hljs-keyword">if</span>(suffe.stack.peek() != <span class="hljs-literal">null</span>)&#123;<br>						suffe.queue.add(suffe.stack.pop());<br>					&#125;<span class="hljs-keyword">else</span>&#123;<br>						<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;error for the absence of &#x27;(&#x27;&quot;</span>);<br>					&#125;<br>				&#125;<br>				suffe.stack.pop();<br>			&#125;<span class="hljs-keyword">else</span>&#123; <span class="hljs-comment">// is an operator, need to consider about the priority of those ops: + , - , * , /</span><br>				<span class="hljs-keyword">if</span> (suffe.stack.isEmpty())&#123;<br>					suffe.stack.push(c);<br>					<span class="hljs-keyword">continue</span>;<br>				&#125;<br>				<span class="hljs-keyword">while</span> (!suffe.stack.isEmpty())&#123; <span class="hljs-comment">// if stack is not empty </span><br>					<span class="hljs-keyword">if</span>(suffe.stack.peek().equals(<span class="hljs-string">&#x27;(&#x27;</span>))&#123; <br>						suffe.stack.push(c);<br>						<span class="hljs-keyword">break</span>;<br>					&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(precedence(c) &lt;= precedence(suffe.stack.peek()))&#123; <span class="hljs-comment">// the top of the stack is not &#x27;(&#x27; and the priority is greater than the current operator</span><br>						suffe.queue.add(suffe.stack.pop());<br>					&#125;<span class="hljs-keyword">else</span>&#123;<br>						suffe.stack.push(c);<br>						<span class="hljs-keyword">break</span>;<br>					&#125;<br>				&#125;<br>				<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">while</span>(!suffe.stack.isEmpty())&#123;<br>			suffe.queue.add(suffe.stack.pop());<br>		&#125;<br>		<span class="hljs-keyword">return</span> suffe;<br>	&#125;<br><br>	<span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isChar</span><span class="hljs-params">(Character a)</span>&#123;<br>		<span class="hljs-keyword">return</span> (a &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; a &lt;= <span class="hljs-string">&#x27;z&#x27;</span>) || (a &gt; <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; a &lt; <span class="hljs-string">&#x27;9&#x27;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">precedence</span><span class="hljs-params">(Character operator)</span> &#123;<br>		<span class="hljs-keyword">switch</span> (operator) &#123;<br>			<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>:<br>			<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;-&#x27;</span>:<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;*&#x27;</span>:<br>			<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/&#x27;</span>:<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>			<span class="hljs-keyword">default</span>:<br>				<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br><br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SuffixExpression</span> &#123;<br>	<span class="hljs-keyword">public</span> Deque&lt;Character&gt; stack;<br>	<span class="hljs-keyword">public</span> Queue&lt;Character&gt; queue;<br>	<span class="hljs-comment">//use a stack and a queue to store the info of the expression</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">SuffixExpression</span><span class="hljs-params">()</span>&#123;<br>		stack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>		queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>	&#125;<br>	<br>	<span class="hljs-type">int</span> <span class="hljs-title function_">execute</span><span class="hljs-params">(Map&lt;String, Integer&gt; env)</span> &#123;<br>		<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> use the info to calculate the answer of the expression</span><br>		<span class="hljs-comment">// first we need a int stack to help us calculate the answer</span><br>		Deque&lt;Integer&gt; helpIntegers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>		<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">this</span>.queue.isEmpty())&#123; <span class="hljs-comment">//is not empty, so we poll the first element to use</span><br>			<span class="hljs-type">Character</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.queue.remove();<br>			<span class="hljs-keyword">if</span>(Main.isChar(c))&#123;<br>				helpIntegers.push(env.get(c.toString()) != <span class="hljs-literal">null</span> ? env.get(c.toString()) : Integer.parseInt(c.toString()));<br>			&#125;<span class="hljs-keyword">else</span>&#123;<br>				<span class="hljs-type">Integer</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> helpIntegers.pop();<br>				<span class="hljs-type">Integer</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> helpIntegers.pop();<br>				<span class="hljs-keyword">switch</span> (c)&#123;<br>					<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>:<br>						helpIntegers.push(a + b);<br>						<span class="hljs-keyword">break</span>;<br>					<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;-&#x27;</span>:<br>						helpIntegers.push(b - a);<br>						<span class="hljs-keyword">break</span>;<br>					<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;*&#x27;</span>:<br>						helpIntegers.push(a * b);<br>						<span class="hljs-keyword">break</span>;<br>					<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/&#x27;</span>:<br>						helpIntegers.push(b / a);<br>						<span class="hljs-keyword">break</span>;<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> helpIntegers.pop();<br>		<span class="hljs-keyword">return</span> ans;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -338,6 +312,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/java/">#java</a>
+      
+    </div>
+  
 </div>
 
 
@@ -346,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ELF</div>
-      <div>http://lowa9.github.io/2023/11/17/ELF/</div>
+      <div>java学习笔记</div>
+      <div>http://lowa9.github.io/2024/02/02/java学习笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月17日</div>
+          <div>2024年2月2日</div>
         </div>
       
       
@@ -391,18 +372,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../../../../2024/02/02/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">java学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../../09/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" title="vim使用技巧">
-                        <span class="hidden-mobile">vim使用技巧</span>
+                      <a href="../../../../2023/11/17/ELF/" title="ELF">
+                        <span class="hidden-mobile">ELF</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
